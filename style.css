@@ -1,0 +1,130 @@
+/* ESTILOS GENERALES */
+
+@import url("https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&display=swap");
+
+body {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  font-family: "Merriweather", cursive;
+  font-weight: 400;
+  font-style: normal;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* Header */
+
+.header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  background-color: rgb(155, 120, 120);
+  padding: 10px;
+  color: #efb810;
+}
+
+.logo-marca {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+.logo {
+  width: 4rem;
+  border-radius: 1rem;
+  border: solid 2px whitesmoke;
+}
+.titulo {
+  font-size: 1rem;
+}
+.nav-burger li {
+  list-style: none;
+  text-decoration: none;
+}
+.abrir-menu {
+  background-color: transparent;
+  width: 2rem;
+  height: 2rem;
+  background-image: url(./img/menu.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: none;
+  cursor: pointer;
+}
+.cerrar {
+  background-color: transparent;
+  width: 2rem;
+  height: 2rem;
+  background-image: url(./img/salir.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  cursor: pointer;
+  display: none;
+}
+.nav-burger {
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+}
+
+.nav-burger ul {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+}
+
+.carro-compra {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+.carro-compra img {
+  width: 2rem;
+}
+
+.contador {
+  font-size: 1rem;
+}
+
+/* Media querys */
+@media (max-width: 575px) {
+  .abrir-menu {
+    display: block;
+  }
+
+  .nav-burger.visible {
+    opacity: 1;
+    visibility: visible;
+  }
+  .nav-burger {
+    position: absolute;
+    top: 0;
+    right: 0;
+    flex-direction: column;
+    justify-content: start;
+    align-items: end;
+    bottom: 0;
+    background-color: rgb(58, 52, 52);
+    box-shadow: 0 0 0 100vmax rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    visibility: hidden;
+  }
+  .nav-list {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .cerrar {
+    display: block;
+  }
+}
