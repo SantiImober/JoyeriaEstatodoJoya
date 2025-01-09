@@ -4,6 +4,8 @@ const cerrar = document.querySelector("#cerrar");
 const abrir = document.querySelector("#abrir");
 const productsContainer = document.querySelector(".products-container");
 const showMoreButtons = document.querySelector(".btn-load");
+const categoriesConteiner = document.querySelector(".categories");
+const categoriesList = document.querySelectorAll(".category");
 
 // MENU HAMBURGUESA
 abrir.addEventListener("click", () => {
@@ -70,6 +72,61 @@ const showMoreProducts = () => {
   }
 };
 
+const setshowMoreVisibility = () => {
+  if (!appstate.activeFilter) {
+    showMoreButtons.style.display = "block";
+  } else {
+    showMoreButtons.style.display = "none";
+  }
+};
+
+const changeBtnActiveState = (selectedCategory) => {
+  const categories = [...categoriesList];
+  categories.forEach((categoryBtn) => {
+    if (categoryBtn.dataset.category !== selectedCategory) {
+      categoryBtn.classList.remove("active");
+      return;
+    }
+    categoryBtn.classList.add("active");
+  });
+};
+
+changeBtnActiveState();
+
+const changeFilterState = (btn) => {
+  appstate.activeFilter = btn.dataset.category;
+  changeBtnActiveState(appstate.activeFilter);
+  setshowMoreVisibility(appstate.activeFilter);
+};
+
+const applyFilter = ({ target }) => {
+  if (!isInactiveFilter(target)) {
+    return;
+  }
+
+  changeFilterState(target);
+  productsContainer.innerHTML = "";
+  if (appstate.activeFilter) {
+    renderedFilteredProducts();
+    appstate.currentProductsIndex = 0;
+    return;
+  }
+  renderProducts(appstate.products[0]);
+};
+
+const isInactiveFilter = (element) => {
+  return (
+    element.classList.contains("category") &&
+    !element.classList.contains("active")
+  );
+};
+
+const renderedFilteredProducts = () => {
+  const filteredProducts = productosLista.filter((product) => {
+    return product.categoria === appstate.activeFilter;
+  });
+  renderProducts(filteredProducts);
+};
 const init = () => {
   const { products, currentProductsIndex, productLimit } = appstate;
 
@@ -80,6 +137,8 @@ const init = () => {
   }
 
   showMoreButtons.addEventListener("click", showMoreProducts);
+
+  categoriesConteiner.addEventListener("click", applyFilter);
 };
 
 init();
