@@ -22,7 +22,23 @@
         <div class="carro-compra">
           <img src="./img/carrito.png" alt="Icono del carrito de compras" />
           <div class="contador">0</div>
+          <div class="cart">
+            <button class="btn-close-cart">&times;</button>
+            <h2>Su compra</h2>
+            <div class="cart-container">
+              <!-- Productos del carrito -->
+            </div>
+            <span class="divider"></span>
+            <div class="cart-total">
+              <p>Total:</p>
+              <span class="total-cart">0 USD</span>
+            </div>
+            <button class="buy-disabled">Comprar</button>
+            <button class="buy-vaciar">Vaciar Carrito</button>
+          </div>
+          <div class="overlay"></div>
         </div>
+
         <ul class="nav-list">
           <li><a href="#sobre-nosotros">Sobre Nosotros</a></li>
           <li><a href="#productos-section">Productos</a></li>
@@ -33,15 +49,16 @@
     <main>
       <!-- HERO -->
       <section class="hero" id="sobre-nosotros">
-        <h2 class="hero-titulo">HOLA COMO ANDAS</h2>
+        <h2 class="hero-titulo">Bienvenidos a ESTA TODO JOYA</h2>
         <p class="hero-parrafo">
-          Lorem ipsum dolor sit, amet consectetur adipisicing elit. In
-          voluptatibus magnam sequi nam maiores cupiditate a voluptate, quis
-          hic. Excepturi.
+          Descubre nuestra exquisita colección de joyas finas y productos
+          premium. En ESTA TODO JOYA, nos dedicamos a ofrecerte lo mejor en
+          diseño, calidad y exclusividad. Permítenos ser parte de tus momentos
+          más especiales.
         </p>
-        <a href="#productos-section"
-          ><button class="hero-boton">clickea</button></a
-        >
+        <a href="#productos-section">
+          <button class="hero-boton">Ver Productos</button>
+        </a>
       </section>
       <!-- Categorías -->
       <div class="categories">
