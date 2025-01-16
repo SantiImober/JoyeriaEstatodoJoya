@@ -32,7 +32,7 @@ const productosLista = [
   {
     id: 4,
     nombre: "Aro BIG Rose",
-    categoria: "ororose",
+    categoria: "rose",
     precio: 380,
     fabricante: "Golden Boys",
     detalle:
@@ -42,7 +42,7 @@ const productosLista = [
   {
     id: 5,
     nombre: "Aro Delicate Rose",
-    categoria: "ororose",
+    categoria: "rose",
     precio: 270,
     fabricante: "Gold Factory",
     detalle:
@@ -52,7 +52,7 @@ const productosLista = [
   {
     id: 6,
     nombre: "Aro detalles dior",
-    categoria: "ororose",
+    categoria: "rose",
     precio: 450,
     fabricante: "Goldwin S.A.",
     detalle:
@@ -152,7 +152,7 @@ const productosLista = [
   {
     id: 16,
     nombre: "Rosemary",
-    categoria: "ororose",
+    categoria: "rose",
     precio: 1000,
     fabricante: "Golden Boys",
     detalle:
@@ -162,7 +162,7 @@ const productosLista = [
   {
     id: 17,
     nombre: "Golder Hearth",
-    categoria: "ororose",
+    categoria: "rose",
     precio: 850,
     fabricante: "Gold Factory",
     detalle:
@@ -172,7 +172,7 @@ const productosLista = [
   {
     id: 18,
     nombre: "Lotus Flower",
-    categoria: "ororose",
+    categoria: "rose",
     precio: 990,
     fabricante: "Gold Factory",
     detalle:

@@ -1,16 +1,22 @@
 // MANIPULACIÓN DEL DOM
 const nav = document.querySelector("#nav");
-const cerrar = document.querySelector("#cerrar");
 const abrir = document.querySelector("#abrir");
+const cerrar = document.querySelector("#cerrar");
 const productsContainer = document.querySelector(".products-container");
 const showMoreButtons = document.querySelector(".btn-load");
 const categoriesConteiner = document.querySelector(".categories");
 const categoriesList = document.querySelectorAll(".category");
 const cartIcon = document.querySelector(".carro-compra img");
-const cart = document.querySelector(".cart");
+const cartMenu = document.querySelector(".cart");
 const overlay = document.querySelector(".overlay");
 const closeCartButton = document.querySelector(".buy-vaciar");
 const closeButton = document.querySelector(".btn-close-cart");
+const productsCart = document.querySelector(".cart-container");
+const total = document.querySelector(".total");
+const cartBubble = document.querySelector(".contador");
+const buyBtn = document.querySelector(".buy-disabled");
+const deleteBtn = document.querySelector(".buy-vaciar");
+const successModal = document.querySelector(".add-modal");
 
 // MENU HAMBURGUESA
 abrir.addEventListener("click", () => {
@@ -21,11 +27,17 @@ cerrar.addEventListener("click", () => {
   nav.classList.remove("visible");
 });
 
-// FUNCIONES DEL CARRITO
-let cartData = JSON.parse(localStorage.getItem("cart")) || [];
+document.addEventListener("click", (e) => {
+  if (!nav.contains(e.target) && !abrir.contains(e.target)) {
+    nav.classList.remove("visible");
+  }
+});
 
-const savecart = () => {
-  localStorage.setItem("cart", JSON.stringify(cartData));
+// FUNCIONES DEL CARRITO
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+const saveCart = () => {
+  localStorage.setItem("cart", JSON.stringify(cart));
 };
 
 const clearCart = () => {
@@ -36,12 +48,12 @@ const clearCart = () => {
 };
 
 const openCart = () => {
-  cart.classList.add("open-cart");
+  cartMenu.classList.add("open-cart");
   overlay.classList.add("active");
 };
 
 const closeCart = () => {
-  cart.classList.remove("open-cart");
+  cartMenu.classList.remove("open-cart");
   overlay.classList.remove("active");
 };
 
@@ -163,6 +175,72 @@ const renderedFilteredProducts = () => {
   renderProducts(filteredProducts);
 };
 
+const createCartProductsTemplate = (cartProduct) => {
+  const { id, nombre, imagen, precio, cantidad } = cartProduct;
+  return `<div class="cart-item">
+      <img src="${imagen}" alt="Joya del carrito" />
+      <div class="item-info">
+        <h3 class="item-title">${nombre}</h3>
+        <p class="item-bid">Current bid</p>
+        <span class="item-price">${precio} USD</span>
+      </div>
+      <div class="item-handler">
+        <span class="quantity-handler down" data-id="${id}">-</span>
+        <span class="item-quantity">${cantidad}</span>
+        <span class="quantity-handler up" data-id="${id}">+</span>
+      </div>
+    </div>`;
+};
+
+const renderCart = () => {
+  if (!cart.length) {
+    productsCart.innerHTML = `<p class="empy-msg">No hay productos en el carrito</p>`;
+    return;
+  }
+  productsCart.innerHTML = cart.map(createCartProductsTemplate).join("");
+};
+
+const getCartTotal = () => {
+  return cart.reduce((acc, cur) => acc + Number(cur.bid) * cur.quantity, 0);
+};
+
+const showCartTotal = () => {
+  total.innerHTML = `${getCartTotal().toFixed(2)} eTH`;
+};
+
+const renderCartBubble = () => {
+  cartBubble.textContent = cart.reduce((acc, cur) => acc + cur.quantity, 0);
+};
+
+const disableBtn = (btn) => {
+  if (!cart.length) {
+    btn.classList.add("nohabilitado");
+  } else {
+    btn.classList.remove("nohabilitado");
+  }
+};
+
+const updateCartState = () => {
+  saveCart();
+  renderCart();
+  showCartTotal();
+  disableBtn(buyBtn);
+  disableBtn(deleteBtn);
+  renderCartBubble();
+};
+
+const addProduct = (e) => {
+  if (e.target.classList.contains("btn-add")) {
+    return;
+  }
+  const product = createProductData(e.target.dataset);
+};
+
+const createProductData = (product) => {
+  const { id, nombre, precio, imagen } = product;
+  return { id, nombre, precio, imagen };
+};
+
 // INICIALIZACIÓN
 const init = () => {
   const { products, currentProductsIndex, productLimit } = appstate;
@@ -176,6 +254,13 @@ const init = () => {
   showMoreButtons.addEventListener("click", showMoreProducts);
   categoriesConteiner.addEventListener("click", applyFilter);
   handleCartEvents();
+
+  document.addEventListener("DOMContentLoaded", renderCart);
+  document.addEventListener("DOMContentLoaded", showCartTotal);
+  productsContainer.addEventListener("click", addProduct);
+  renderCartBubble();
+  disableBtn(buyBtn);
+  disableBtn(deleteBtn);
 };
 
 init();
