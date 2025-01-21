@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Está Todo Joya</title>
     <link rel="stylesheet" href="style.css" />
+    <link rel="icon" href="./img/favicon.png" type="image/x-icon" />
   </head>
   <body>
     <header class="header">
@@ -31,7 +32,7 @@
             <span class="divider"></span>
             <div class="cart-total">
               <p>Total:</p>
-              <span class="total-cart">0,00 USD</span>
+              <span class="total-cart">0</span>
             </div>
             <button class="buy-disabled">Comprar</button>
             <button class="buy-vaciar">Vaciar Carrito</button>
@@ -81,32 +82,51 @@
             <p><strong>Email:</strong> contacto@estajoya.com</p>
             <p><strong>Teléfono:</strong> +54 11 1234 5678</p>
             <div class="redes">
-              <a href="https://facebook.com" target="_blank">
+              <a href="#" target="_blank">
                 <img src="./img/fb.png" alt="Facebook" />
               </a>
-              <a href="https://instagram.com" target="_blank">
-                <img src="./img/insta.png" alt="Instagram" />
-              </a>
-              <a href="https://twitter.com" target="_blank">
-                <img src="./img/x.png" alt="Twitter" />
+              <a href="#" target="_blank">
+                <img src="./img/social.png" alt="Twitter" />
               </a>
             </div>
           </div>
-          <div class="contacto-mapa">
-            <h3>Nuestra Ubicación</h3>
-            <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2889689.672266813!2d-61.9294872979564!3d-32.06729698357825!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95a551ddba482fbf%3A0x69284bf0dcd46382!2sEntre%20R%C3%ADos!5e1!3m2!1ses-419!2sar!4v1736556183517!5m2!1ses-419!2sar"
-              width="600"
-              height="450"
-              style="border: 0"
-              allowfullscreen=""
-              loading="lazy"
-              referrerpolicy="no-referrer-when-downgrade"
-            ></iframe>
+          <div class="contacto-formulario">
+            <h3>Envíanos tu consulta</h3>
+            <form id="contactForm">
+              <div>
+                <label for="nombre">Nombre y Apellido</label>
+                <input type="text" id="nombre" name="nombre" />
+              </div>
+              <div>
+                <label for="correo">Correo Electrónico</label>
+                <input type="email" id="correo" name="correo" />
+              </div>
+              <div>
+                <label for="telefono">Teléfono</label>
+                <input type="tel" id="telefono" name="telefono" />
+              </div>
+              <div>
+                <label for="consulta">Consulta</label>
+                <textarea id="consulta" name="consulta" rows="4"></textarea>
+              </div>
+
+              <div>
+                <label for="pais"
+                  >Selecciona tu país para calcular el envío:</label
+                >
+                <select id="pais">
+                  <option value="">-- Selecciona un país --</option>
+                </select>
+              </div>
+              <div class="envio-mensaje" id="envioMensaje">
+                Selecciona un país para ver el costo de envío.
+              </div>
+              <button type="submit">Enviar</button>
+            </form>
+            <div id="formMessage" class="hidden"></div>
           </div>
         </div>
       </section>
-
       <!-- FOOTER -->
       <footer class="footer">
         <div class="footer-contenido">
